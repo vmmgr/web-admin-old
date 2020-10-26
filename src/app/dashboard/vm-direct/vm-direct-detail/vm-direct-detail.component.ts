@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {VmDirectService} from '../../../service/vm-direct.service';
 import {ActivatedRoute} from '@angular/router';
 
@@ -7,7 +7,7 @@ import {ActivatedRoute} from '@angular/router';
     templateUrl: './vm-direct-detail.component.html',
     styleUrls: ['./vm-direct-detail.component.scss']
 })
-export class VmDirectDetailComponent implements OnInit {
+export class VmDirectDetailComponent implements OnInit, OnDestroy {
 
     public vm: any;
     public vmXml: string;
@@ -30,6 +30,10 @@ export class VmDirectDetailComponent implements OnInit {
             }
             console.log(response);
         });
+    }
+
+    ngOnDestroy() {
+        sessionStorage.removeItem('vm-direct');
     }
 
 }
