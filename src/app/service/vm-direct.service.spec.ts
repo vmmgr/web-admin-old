@@ -1,13 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 
-import { NetworkService } from './network.service';
+import { VmDirectService } from './vm-direct.service';
 
-describe('NetworkService', () => {
-  let service: NetworkService;
+describe('VmDirectService', () => {
+  let service: VmDirectService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(NetworkService);
+    service = TestBed.inject(VmDirectService);
   });
 
   it('should be created', () => {

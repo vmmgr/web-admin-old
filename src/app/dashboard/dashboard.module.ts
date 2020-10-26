@@ -29,6 +29,8 @@ import {SupportComponent} from './support/support.component';
 import {ChatComponent} from './support/chat/chat.component';
 import {NoticeComponent} from './notice/notice.component';
 import {NoticeDetailComponent} from './notice/notice-detail/notice-detail.component';
+import { VmDirectComponent } from './vm-direct/vm-direct.component';
+import { VmDirectDetailComponent } from './vm-direct/vm-direct-detail/vm-direct-detail.component';
 
 
 @NgModule({
@@ -43,6 +45,8 @@ import {NoticeDetailComponent} from './notice/notice-detail/notice-detail.compon
     ChatComponent,
     NoticeComponent,
     NoticeDetailComponent,
+    VmDirectComponent,
+    VmDirectDetailComponent,
   ],
   imports: [
     HttpClientModule,

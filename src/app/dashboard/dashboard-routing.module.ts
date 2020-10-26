@@ -11,6 +11,8 @@ import {SupportComponent} from './support/support.component';
 import {ChatComponent} from './support/chat/chat.component';
 import {NoticeComponent} from './notice/notice.component';
 import {NoticeDetailComponent} from './notice/notice-detail/notice-detail.component';
+import {VmDirectComponent} from './vm-direct/vm-direct.component';
+import {VmDirectDetailComponent} from './vm-direct/vm-direct-detail/vm-direct-detail.component';
 
 
 const routes: Routes = [
@@ -25,6 +27,8 @@ const routes: Routes = [
             {path: 'token', component: TokenComponent},
             {path: 'group', component: GroupComponent},
             {path: 'group/:id', component: GroupDetailComponent},
+            {path: 'vm-direct', component: VmDirectComponent},
+            {path: 'vm-direct/:id', component: VmDirectDetailComponent},
             {path: 'support', component: SupportComponent},
             {path: 'support/:id', component: ChatComponent},
             {path: 'user', component: UserComponent},

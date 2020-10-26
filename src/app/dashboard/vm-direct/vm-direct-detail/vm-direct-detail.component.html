@@ -1,0 +1,23 @@
+<div class="main">
+    <h2>UUID: {{id}}</h2>
+    <br>
+    <ng-container *ngIf="loading">
+        <h1>読み込み中...</h1>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+        <mat-tab-group>
+            <mat-tab label="XML情報">
+                <br>
+                <p>{{vmXml}}</p>
+                <br>
+
+            </mat-tab>
+            <mat-tab label="設定">
+                <ng-template matTabContent>
+                    <br>
+                </ng-template>
+            </mat-tab>
+        </mat-tab-group>
+    </ng-container>
+    <br>
+</div>
