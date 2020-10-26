@@ -1,0 +1,100 @@
+<div class="main">
+  <h2>ID: {{id}}</h2>
+  <ng-container *ngIf="loading">
+    <h1>読み込み中...</h1>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+    <mat-tab-group>
+      <mat-tab label="情報">
+        <br>
+        <table>
+          <tr>
+            <th colspan="2">User Information</th>
+          </tr>
+          <tr>
+            <th>User Create Date</th>
+            <td>{{group.CreatedAt}}</td>
+          </tr>
+          <tr>
+            <th>User Update Date</th>
+            <td>{{group.UpdatedAt}}</td>
+          </tr>
+          <tr>
+            <th>Org</th>
+            <td>{{group.org}}</td>
+          </tr>
+          <tr>
+            <th>Agreement</th>
+            <td>{{group.agree}}</td>
+          </tr>
+          <tr>
+            <th>Comment</th>
+            <td>{{group.comment}}</td>
+          </tr>
+          <tr>
+            <th>Status</th>
+            <td>{{group.status}}</td>
+          </tr>
+          <tr>
+            <th>Lock</th>
+            <td>{{group.lock}}</td>
+          </tr>
+        </table>
+        <br>
+        <mat-accordion>
+          <mat-expansion-panel class="card">
+            <mat-expansion-panel-header>
+              <mat-panel-title>Question</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{group.question}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <br>
+        <mat-accordion>
+          <mat-expansion-panel class="card">
+            <mat-expansion-panel-header>
+              <mat-panel-title>Bandwidth</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{group.bandwidth}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <br>
+        <mat-accordion>
+          <mat-expansion-panel class="card">
+            <mat-expansion-panel-header>
+              <mat-panel-title>Contract</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{group.contract}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <br>
+      </mat-tab>
+      <mat-tab label="設定">
+        <ng-template matTabContent>
+          <br>
+          <div class="main">
+            <p>Updateしたいデータを記入することで、その部分のみが更新されます。</p>
+            <form [formGroup]="groupInput">
+              <mat-form-field appearance="fill">
+                <mat-label>Org</mat-label>
+                <input matInput type="text" formControlName="org">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Status</mat-label>
+                <input matInput type="number" formControlName="status">
+              </mat-form-field>
+              &nbsp;
+              <h3>Lock</h3>
+              <mat-checkbox formControlName="lock">Lock</mat-checkbox>
+            </form>
+            <br>
+            <button mat-stroked-button color="primary" (click)="update()">Update</button>
+            <br>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-container>
+  <br>
+</div>

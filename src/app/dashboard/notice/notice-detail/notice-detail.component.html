@@ -1,0 +1,118 @@
+<div class="main">
+  <h2>ID: {{id}}</h2>
+  <ng-container *ngIf="loading">
+    <h1>読み込み中...</h1>
+  </ng-container>
+  <ng-container *ngIf="!loading">
+    <mat-tab-group>
+      <mat-tab label="情報">
+        <br>
+        <table>
+          <tr>
+            <th colspan="2">Connection Information</th>
+          </tr>
+          <tr>
+            <th>Create Date</th>
+            <td>{{notice.CreatedAt}}</td>
+          </tr>
+          <tr>
+            <th>Update Date</th>
+            <td>{{notice.UpdatedAt}}</td>
+          </tr>
+          <tr>
+            <th>StartTime</th>
+            <td>{{notice.start_time}}</td>
+          </tr>
+          <tr>
+            <th>EndingTime</th>
+            <td>{{notice.ending_time}}</td>
+          </tr>
+          <tr>
+            <th>Title</th>
+            <td>{{notice.title}}</td>
+          </tr>
+        </table>
+        <br>
+        <table>
+          <tr>
+            <th colspan="4">Connection Information</th>
+          </tr>
+          <tr>
+            <th>重要</th>
+            <td>{{notice.important}}</td>
+            <th>障害</th>
+            <td>{{notice.fault}}</td>
+          </tr>
+          <tr>
+            <th>全員(ユーザ全員に広告)</th>
+            <td>{{notice.everyone}}</td>
+            <th>情報</th>
+            <td>{{notice.info}}</td>
+          </tr>
+        </table>
+        <br>
+        <mat-accordion>
+          <mat-expansion-panel class="card">
+            <mat-expansion-panel-header>
+              <mat-panel-title>本文</mat-panel-title>
+            </mat-expansion-panel-header>
+            <p>{{notice.data}}</p>
+          </mat-expansion-panel>
+        </mat-accordion>
+        <br>
+      </mat-tab>
+      <mat-tab label="設定">
+        <ng-template matTabContent>
+          <br>
+          <div class="main">
+            <p>Updateしたいデータを記入することで、その部分のみが更新されます。</p>
+            <form [formGroup]="noticeInput">
+              <mat-form-field appearance="fill">
+                <mat-label>タイトル</mat-label>
+                <input matInput type="text" formControlName="title">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>本文</mat-label>
+                <textarea matInput rows="10" type="text" formControlName="data"></textarea>
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>Start_Time</mat-label>
+                <input matInput type="datetime-local" formControlName="start_time">
+              </mat-form-field>
+              &nbsp;
+              <mat-form-field appearance="fill">
+                <mat-label>Ending_Time</mat-label>
+                <input matInput type="datetime-local" formControlName="ending_time">
+              </mat-form-field>
+              <br>
+              <mat-form-field appearance="fill">
+                <mat-label>User ID</mat-label>
+                <input matInput type="number" formControlName="user_id">
+              </mat-form-field>
+              &nbsp;
+              <mat-form-field appearance="fill">
+                <mat-label>Group ID</mat-label>
+                <input matInput type="number" formControlName="group_id">
+              </mat-form-field>
+              <br>
+              <h3>各種設定</h3>
+              <mat-checkbox formControlName="everyone">全体</mat-checkbox>
+              <h3>タグ</h3>
+              <mat-checkbox formControlName="important">重要</mat-checkbox>
+              &nbsp;
+              <mat-checkbox formControlName="fault">障害</mat-checkbox>
+              &nbsp;
+              <mat-checkbox formControlName="info">情報</mat-checkbox>
+            </form>
+            <br>
+            <button mat-stroked-button color="primary" (click)="update()">Update</button>
+            <br>
+          </div>
+        </ng-template>
+      </mat-tab>
+    </mat-tab-group>
+  </ng-container>
+  <br>
+</div>

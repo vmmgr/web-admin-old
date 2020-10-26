@@ -1,0 +1,30 @@
+.card {
+  margin: 4px 10px 4px 10px;
+}
+
+.sub {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.left {
+  margin-left: 10px;
+
+  p {
+    white-space: pre-wrap;
+  }
+}
+
+.large-width {
+  width: 80%;
+}
+
+::ng-deep nb-layout-column {
+  justify-content: center;
+  display: flex;
+}
+
+nb-chat {
+  width: 500px;
+  margin: 0.5rem 0 2rem 2rem;
+}

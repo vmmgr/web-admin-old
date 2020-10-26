@@ -1,0 +1,156 @@
+<div class="main">
+  <h1>Notice</h1>
+  <mat-tab-group>
+    <ng-container *ngIf="loading">
+      <h2>データがありません。</h2>
+    </ng-container>
+    <mat-tab label="通知一覧">
+      <ng-container *ngFor="let d of notice">
+        <ng-container *ngIf="d.start_time < unixTime&& unixTime < d.ending_time">
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title>{{d.title}}</mat-card-title>
+              <mat-card-subtitle>ID: {{d.ID}} GroupID:{{d.group_id}}</mat-card-subtitle>
+              <mat-card-subtitle>
+                <mat-chip-list>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.everyone" selected>Everyone</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="warn" *ngIf="d.fault" selected>障害</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.important" selected>重要</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.info" selected>Info</mat-chip>
+                  </ng-container>
+                </mat-chip-list>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{d.data}}</p>
+              <button mat-button color="primary" (click)="detailPage(d.ID)">詳細ページ</button>
+              <button mat-button color="warn" (click)="delete(d.ID)">削除</button>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+      <br>
+    </mat-tab>
+    <mat-tab label="通知一覧(通知予定）">
+      <ng-container *ngFor="let d of notice">
+        <ng-container *ngIf="d.start_time > unixTime ">
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title>{{d.title}}</mat-card-title>
+              <mat-card-subtitle>ID: {{d.ID}} GroupID:{{d.group_id}}</mat-card-subtitle>
+              <mat-card-subtitle>
+                <mat-chip-list>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.everyone" selected>Everyone</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="warn" *ngIf="d.fault" selected>障害</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.important" selected>重要</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.info" selected>Info</mat-chip>
+                  </ng-container>
+                </mat-chip-list>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{d.data}}</p>
+              <button mat-button color="primary" (click)="detailPage(d.ID)">詳細ページ</button>
+              <button mat-button color="warn" (click)="delete(d.ID)">削除</button>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+      <br>
+    </mat-tab>
+    <mat-tab label="通知一覧(通知終了）">
+      <ng-container *ngFor="let d of notice">
+        <ng-container *ngIf="unixTime > d.ending_time">
+          <mat-card class="card">
+            <mat-card-header>
+              <mat-card-title>{{d.title}}</mat-card-title>
+              <mat-card-subtitle>ID: {{d.ID}} GroupID:{{d.group_id}}</mat-card-subtitle>
+              <mat-card-subtitle>
+                <mat-chip-list>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.everyone" selected>Everyone</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="warn" *ngIf="d.fault" selected>障害</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.important" selected>重要</mat-chip>
+                  </ng-container>
+                  <ng-container>
+                    <mat-chip color="primary" *ngIf="d.info" selected>Info</mat-chip>
+                  </ng-container>
+                </mat-chip-list>
+              </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+              <p>{{d.data}}</p>
+              <button mat-button color="primary" (click)="detailPage(d.ID)">詳細ページ</button>
+              <button mat-button color="warn" (click)="delete(d.ID)">削除</button>
+            </mat-card-content>
+          </mat-card>
+        </ng-container>
+      </ng-container>
+      <br>
+    </mat-tab>
+    <mat-tab label="通知追加">
+      <br>
+      <form [formGroup]="noticeInput">
+        <mat-form-field appearance="fill">
+          <mat-label>タイトル</mat-label>
+          <input matInput type="text" formControlName="title">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>本文</mat-label>
+          <textarea matInput rows="10" type="text" formControlName="data"></textarea>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>Start_Time</mat-label>
+          <input matInput type="datetime-local" formControlName="start_time">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field appearance="fill">
+          <mat-label>Ending_Time</mat-label>
+          <input matInput type="datetime-local" formControlName="ending_time">
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <mat-label>User ID</mat-label>
+          <input matInput type="number" formControlName="user_id">
+        </mat-form-field>
+        &nbsp;
+        <mat-form-field appearance="fill">
+          <mat-label>Group ID</mat-label>
+          <input matInput type="number" formControlName="group_id">
+        </mat-form-field>
+        <br>
+        <h3>各種設定</h3>
+        <mat-checkbox formControlName="everyone">全体</mat-checkbox>
+        <h3>タグ</h3>
+        <mat-checkbox formControlName="important">重要</mat-checkbox>
+        &nbsp;
+        <mat-checkbox formControlName="fault">障害</mat-checkbox>
+        &nbsp;
+        <mat-checkbox formControlName="info">情報</mat-checkbox>
+      </form>
+      <br>
+      <button mat-button (click)="add()">追加</button>
+      <br>
+    </mat-tab>
+  </mat-tab-group>
+</div>
