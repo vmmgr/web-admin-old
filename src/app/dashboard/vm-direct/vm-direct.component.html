@@ -15,18 +15,21 @@
         <br>
         <mat-card>
             <mat-card-header>
-                <mat-card-title>{{vm.name}}</mat-card-title>
-                <mat-card-subtitle>UUID:{{vm.uuid}} </mat-card-subtitle>
-                <!--                <mat-card-subtitle>{{d.email}}</mat-card-subtitle>-->
+                <mat-card-title>{{vm.vm.Name}}</mat-card-title>
+                <mat-card-subtitle>UUID:{{vm.vm.UUID}} </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
                 <mat-card-subtitle>
-                    <p>CPU: {{vm.vcpu}} Memory: {{vm.memory / 1000}} MB</p>
+                    <mat-chip-list>
+                        <mat-chip color="primary" selected>{{vm.vm.Type}}</mat-chip>
+                    </mat-chip-list>
                 </mat-card-subtitle>
-                <p></p>
+                <mat-card-subtitle>
+                    <p>CPU: {{vm.vm.VCPU.Value}} Memory: {{vm.vm.Memory.Value / 1000}} MB</p>
+                </mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
-                <button mat-button (click)="detailPage(vm.uuid)">Detail Page</button>
+                <button mat-button (click)="detailPage(vm.vm.UUID)">Detail Page</button>
             </mat-card-actions>
         </mat-card>
     </ng-container>
