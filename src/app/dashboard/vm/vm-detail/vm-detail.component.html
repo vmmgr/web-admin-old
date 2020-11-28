@@ -1,0 +1,52 @@
+<div class="main">
+    <h2>UUID: {{vmID}}</h2>
+    <br>
+    <ng-container *ngIf="loading">
+        <h1>読み込み中...</h1>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+        <mat-tab-group>
+            <mat-tab label="情報">
+                <br>
+                <table>
+                    <tr>
+                        <th colspan="2">VM Information</th>
+                    </tr>
+                    <!--                    <tr>-->
+                    <!--                        <th>CPU</th>-->
+                    <!--                        <td>{{vm.}}</td>-->
+                    <!--                    </tr>-->
+                    <tr>
+                        <th>Memory</th>
+                        <td>{{vm.Memory.Value}}</td>
+                    </tr>
+
+                </table>
+                <br>
+            </mat-tab>
+            <mat-tab label="JSON情報">
+                <br>
+                <p>{{json}}</p>
+                <br>
+            </mat-tab>
+            <mat-tab label="設定">
+                <br>
+                <form [formGroup]="vmInput">
+                    <mat-form-field appearance="fill">
+                        <mat-label>vCPU</mat-label>
+                        <input matInput type="number" formControlName="vCPU">
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field appearance="fill">
+                        <mat-label>Memory</mat-label>
+                        <input matInput type="number" formControlName="memory">
+                    </mat-form-field>
+                </form>
+                <br>
+                <button mat-stroked-button color="primary" (click)="update()">Update</button>
+                <br>
+            </mat-tab>
+        </mat-tab-group>
+    </ng-container>
+    <br>
+</div>

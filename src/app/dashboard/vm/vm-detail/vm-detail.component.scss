@@ -1,0 +1,56 @@
+.main {
+
+  table {
+    border-collapse: collapse;
+    margin: 0 auto;
+    width: 80%;
+
+  }
+
+  td, th {
+    border: 1px solid #ccc;
+    padding: 10px;
+  }
+
+  th {
+    background: #EFEFEF;
+    white-space: pre-wrap;
+  }
+
+  tr:first-child th {
+    border-top: 5px solid #005ab3;
+  }
+
+  tr:first-child td {
+    border-top: 5px solid #ccc;
+  }
+
+  .h1 {
+    font-size: xx-large;
+  }
+
+  margin-left: 20px;
+  margin-right: 20px;
+  margin-top: 20px;
+
+  p {
+    white-space: pre-wrap;
+  }
+
+  .card {
+    margin-top: 7px;
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+
+.large-width {
+  width: 80%;
+}
+
+.textarea-form {
+  min-width: 400px;
+  max-width: 1000px;
+  width: 100%;
+}
