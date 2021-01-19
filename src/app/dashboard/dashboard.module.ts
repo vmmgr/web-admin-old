@@ -31,6 +31,11 @@ import {NoticeComponent} from './notice/notice.component';
 import {NoticeDetailComponent} from './notice/notice-detail/notice-detail.component';
 import { VmDirectComponent } from './vm-direct/vm-direct.component';
 import { VmDirectDetailComponent } from './vm-direct/vm-direct-detail/vm-direct-detail.component';
+import { VmComponent } from './vm/vm.component';
+import { NodeComponent } from './node/node.component';
+import {MatMenuModule} from '@angular/material/menu';
+import { VmDetailComponent } from './vm/vm-detail/vm-detail.component';
+import { VmCreateComponent } from './vm/vm-create/vm-create.component';
 
 
 @NgModule({
@@ -47,29 +52,34 @@ import { VmDirectDetailComponent } from './vm-direct/vm-direct-detail/vm-direct-
     NoticeDetailComponent,
     VmDirectComponent,
     VmDirectDetailComponent,
+    VmComponent,
+    NodeComponent,
+    VmDetailComponent,
+    VmCreateComponent,
   ],
-  imports: [
-    HttpClientModule,
-    CommonModule,
-    DashboardRoutingModule,
-    MatSidenavModule,
-    MatListModule,
-    MatButtonModule,
-    MatCardModule,
-    MatChipsModule,
-    MatIconModule,
-    MatRadioModule,
-    MatCheckboxModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatInputModule,
-    FormsModule,
-    MatTabsModule,
-    MatExpansionModule,
-    MatSelectModule,
-  ],
+    imports: [
+        HttpClientModule,
+        CommonModule,
+        DashboardRoutingModule,
+        MatSidenavModule,
+        MatListModule,
+        MatButtonModule,
+        MatCardModule,
+        MatChipsModule,
+        MatIconModule,
+        MatRadioModule,
+        MatCheckboxModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatInputModule,
+        FormsModule,
+        MatTabsModule,
+        MatExpansionModule,
+        MatSelectModule,
+        MatMenuModule,
+    ],
   exports: [
     MatCardModule,
     MatSidenavModule,

@@ -13,6 +13,10 @@ import {NoticeComponent} from './notice/notice.component';
 import {NoticeDetailComponent} from './notice/notice-detail/notice-detail.component';
 import {VmDirectComponent} from './vm-direct/vm-direct.component';
 import {VmDirectDetailComponent} from './vm-direct/vm-direct-detail/vm-direct-detail.component';
+import {NodeComponent} from './node/node.component';
+import {VmComponent} from './vm/vm.component';
+import {VmDetailComponent} from './vm/vm-detail/vm-detail.component';
+import {VmCreateComponent} from './vm/vm-create/vm-create.component';
 
 
 const routes: Routes = [
@@ -33,6 +37,10 @@ const routes: Routes = [
             {path: 'support/:id', component: ChatComponent},
             {path: 'user', component: UserComponent},
             {path: 'user/:id', component: UserDetailComponent},
+            {path: 'node', component: NodeComponent},
+            {path: 'vm', component: VmComponent},
+            {path: 'vm/create', component: VmCreateComponent},
+            {path: 'vm/:node_id/:vm_id', component: VmDetailComponent},
         ],
     }
 ];

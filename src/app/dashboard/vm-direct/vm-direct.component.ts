@@ -14,7 +14,7 @@ export class VmDirectComponent implements OnInit {
     public vms: any[] = new Array();
 
     constructor(
-        private vmDirectService: VmDirectService,
+        public vmDirectService: VmDirectService,
         private commonService: CommonService,
         private router: Router,
     ) {

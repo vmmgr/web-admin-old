@@ -10,12 +10,23 @@
                 <br>
                 <p>{{vmXml}}</p>
                 <br>
-
             </mat-tab>
             <mat-tab label="設定">
-                <ng-template matTabContent>
-                    <br>
-                </ng-template>
+                <br>
+                <form [formGroup]="vmInput">
+                    <mat-form-field appearance="fill">
+                        <mat-label>vCPU</mat-label>
+                        <input matInput type="number" formControlName="vCPU">
+                    </mat-form-field>
+                    &nbsp;
+                    <mat-form-field appearance="fill">
+                        <mat-label>Memory</mat-label>
+                        <input matInput type="number" formControlName="memory">
+                    </mat-form-field>
+                </form>
+                <br>
+                <button mat-stroked-button color="primary" (click)="update()">Update</button>
+                <br>
             </mat-tab>
         </mat-tab-group>
     </ng-container>

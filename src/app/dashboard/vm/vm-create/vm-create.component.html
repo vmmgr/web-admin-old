@@ -1,0 +1,108 @@
+<div class="main">
+    <mat-tab-group>
+        <mat-tab label="Template">
+            <br>
+            <form [formGroup]="templateInput">
+                <mat-form-field appearance="fill">
+                    <mat-label>Name</mat-label>
+                    <input matInput formControlName="name">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+                <br>
+                <p>StorageCapacityはController側が未実装</p>
+                <mat-form-field appearance="fill">
+                    <mat-label>StorageCapacity</mat-label>
+                    <input matInput type="number" formControlName="storage_capacity">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>StoragePathType</mat-label>
+                    <input matInput type="number" formControlName="storage_path_type">
+                </mat-form-field>
+                <br>
+                <mat-form-field appearance="fill">
+                    <mat-label>NIC(br100)</mat-label>
+                    <input matInput formControlName="nic_type">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>IP</mat-label>
+                    <input matInput formControlName="ip">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>Netmask(255.255.255.0)</mat-label>
+                    <input matInput formControlName="netmask">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>Gateway</mat-label>
+                    <input matInput formControlName="gateway">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>DNS(1.1.1.1,8.8.8.8)</mat-label>
+                    <input matInput formControlName="dns">
+                </mat-form-field>
+            </form>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Node Select</mat-label>
+                <mat-select>
+                    <ng-container *ngFor="let node of nodes">
+                        <mat-option value="option"
+                                    (click)="nodeSelect(node.ID)">{{node.ID}}({{node.name}})
+                            {{node.ip}}:{{node.port}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field appearance="fill">
+                <mat-label>Template Select</mat-label>
+                <mat-select>
+                    <ng-container *ngFor="let template of templates; index as id">
+                        <mat-option value="option"
+                                    (click)="templateSelect(id,template.id)">{{template.name}} {{template.tag}}</mat-option>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-radio-group class="radio-group" [(ngModel)]="selectPlanID">
+                <mat-radio-button class="radio-button" *ngFor="let plan of plans"
+                                  [value]="plan.plan_id">
+                    CPU:{{plan.cpu}} Mem:{{plan.mem}} Storage:{{plan.storage}}
+                </mat-radio-button>
+            </mat-radio-group>
+            <p>{{selectTemplateID}}-{{selectPlanID}}</p>
+            <br>
+            <br>
+            <button mat-button (click)="createClick()">VM Create</button>
+            <br>
+            <br>
+            <mat-progress-bar mode="determinate" value="{{this.vmService.progress}}"></mat-progress-bar>
+            <br>
+        </mat-tab>
+        <mat-tab label="手動">
+            <br>
+
+            <form [formGroup]="vmInput">
+                <mat-form-field appearance="fill">
+                    <mat-label>vCPU</mat-label>
+                    <input matInput type="number" formControlName="vCPU">
+                </mat-form-field>
+                &nbsp;
+                <mat-form-field appearance="fill">
+                    <mat-label>Memory</mat-label>
+                    <input matInput type="number" formControlName="memory">
+                </mat-form-field>
+            </form>
+            <br>
+            <!--        <button mat-stroked-button color="primary" (click)="update()">Update</button>-->
+            <br>
+        </mat-tab>
+    </mat-tab-group>
+</div>
