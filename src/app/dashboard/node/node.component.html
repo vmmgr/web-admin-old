@@ -1,0 +1,22 @@
+<ng-container *ngFor="let d of node">
+    <mat-card class="card">
+        <mat-card-header>
+            <mat-card-title>{{d.name}}</mat-card-title>
+            <mat-card-subtitle>ID:{{d.ID}} Status: {{d.manage_net}}</mat-card-subtitle>
+            <mat-card-subtitle>ZoneID:{{d.zone_id}} GroupID: {{d.group_id}}</mat-card-subtitle>
+            <mat-card-subtitle>{{d.ip}}:{{d.port}}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+            <mat-card-subtitle>
+                <mat-chip-list>
+                </mat-chip-list>
+            </mat-card-subtitle>
+            <p></p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button (click)="nodeDetailPage(d.ID)" disabled>Detail Page</button>
+        </mat-card-actions>
+    </mat-card>
+</ng-container>
+<br>
+
