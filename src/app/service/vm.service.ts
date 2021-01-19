@@ -16,6 +16,10 @@ export class VmService {
     ) {
     }
 
+    websocket: WebSocket;
+    progress = 0;
+    dataMessage: any;
+
     private static resProcess(res: any): any {
         const response: any = res;
         if (response.status === 200) {
@@ -27,6 +31,48 @@ export class VmService {
                 vm: response.vm
             };
         }
+    }
+
+    public openWebSocket() {
+        this.websocket = new WebSocket(environment.websocket.url + environment.websocket.path + '/vm');
+        this.websocket.onopen = (event) => {
+            console.log(event);
+        };
+
+        this.websocket.onmessage = (event) => {
+            // console.log(event);
+            const tmp = event.data;
+            console.log(tmp);
+            this.progress = event.data.progress;
+            const json = JSON.parse(event.data);
+            this.dataMessage = json;
+            this.progress = json.progress;
+        };
+        this.websocket.onclose = (event) => {
+            console.log(event);
+        };
+    }
+
+    public sendMessage(message: string) {
+        console.log(message);
+        this.websocket.send(message);
+    }
+
+    public closeWebSocket() {
+        this.websocket.close();
+    }
+
+    create(body): Promise<any> {
+        return this.http.post(environment.api.url + environment.api.path + '/vm', body, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            }),
+        }).toPromise().then(r => {
+            return VmService.resProcess(r);
+        }).catch(error => {
+            console.log(error);
+            return {status: false, error};
+        });
     }
 
     get(nodeID, vmID): Promise<any> {
