@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl} from '@angular/forms';
 import {CommonService} from '../../service/common.service';
 import {Router} from '@angular/router';
 import {VmService} from '../../service/vm.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
     selector: 'app-vm',
@@ -31,5 +31,11 @@ export class VmComponent implements OnInit {
 
     detailPage(nodeID, vmUUID) {
         this.router.navigate(['/dashboard/vm/' + nodeID + '/' + vmUUID]).then();
+    }
+
+    noVNCPage(nodeID, vmUUID) {
+        window.open(environment.novnc.url + '/0/' + sessionStorage.getItem('AccessToken') + '/' + nodeID + '?uuid=' + vmUUID,
+            '_blank');
+        // this.router.navigate(['/dashboard/vm/' + nodeID + '/' + vmUUID]).then();
     }
 }
