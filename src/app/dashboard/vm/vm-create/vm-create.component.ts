@@ -32,6 +32,8 @@ export class VmCreateComponent implements OnInit, OnDestroy {
         gateway: new FormControl(),
         dns: new FormControl(),
         password: new FormControl(),
+        pci: new FormControl(),
+        usb: new FormControl(),
     });
 
 
@@ -85,6 +87,18 @@ export class VmCreateComponent implements OnInit, OnDestroy {
         template.node_id = this.selectNode;
         template.template_id = this.selectTemplateID;
         template.template_plan_id = this.selectPlanID;
+        try {
+            const pci = this.templateInput.get('pci').value;
+            template.pci = pci.split(',');
+        } catch (e) {
+            console.log(e);
+        }
+        try {
+            const usb = this.templateInput.get('usb').value;
+            template.usb = usb.split(',');
+        } catch (e) {
+            console.log(e);
+        }
 
         const body = {node_id: this.selectNode, template, template_apply: true};
 
@@ -93,5 +107,8 @@ export class VmCreateComponent implements OnInit, OnDestroy {
         this.vmService.create(body).then(response => {
             console.log(response);
         });
+    }
+
+    manualCreate() {
     }
 }
