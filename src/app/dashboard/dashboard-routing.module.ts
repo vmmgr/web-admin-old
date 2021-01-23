@@ -1,5 +1,5 @@
 import {NgModule} from '@angular/core';
-import {Routes, RouterModule} from '@angular/router';
+import {RouterModule, Routes} from '@angular/router';
 import {DashboardComponent} from './dashboard.component';
 import {AuthGuard} from '../guard/auth.guard';
 import {UserComponent} from './user/user.component';
@@ -17,6 +17,7 @@ import {NodeComponent} from './node/node.component';
 import {VmComponent} from './vm/vm.component';
 import {VmDetailComponent} from './vm/vm-detail/vm-detail.component';
 import {VmCreateComponent} from './vm/vm-create/vm-create.component';
+import {NodeDetailComponent} from './node/node-detail/node-detail.component';
 
 
 const routes: Routes = [
@@ -38,6 +39,7 @@ const routes: Routes = [
             {path: 'user', component: UserComponent},
             {path: 'user/:id', component: UserDetailComponent},
             {path: 'node', component: NodeComponent},
+            {path: 'node/:id', component: NodeDetailComponent},
             {path: 'vm', component: VmComponent},
             {path: 'vm/create', component: VmCreateComponent},
             {path: 'vm/:node_id/:vm_id', component: VmDetailComponent},

@@ -29,34 +29,36 @@ import {SupportComponent} from './support/support.component';
 import {ChatComponent} from './support/chat/chat.component';
 import {NoticeComponent} from './notice/notice.component';
 import {NoticeDetailComponent} from './notice/notice-detail/notice-detail.component';
-import { VmDirectComponent } from './vm-direct/vm-direct.component';
-import { VmDirectDetailComponent } from './vm-direct/vm-direct-detail/vm-direct-detail.component';
-import { VmComponent } from './vm/vm.component';
-import { NodeComponent } from './node/node.component';
+import {VmDirectComponent} from './vm-direct/vm-direct.component';
+import {VmDirectDetailComponent} from './vm-direct/vm-direct-detail/vm-direct-detail.component';
+import {VmComponent} from './vm/vm.component';
+import {NodeComponent} from './node/node.component';
 import {MatMenuModule} from '@angular/material/menu';
-import { VmDetailComponent } from './vm/vm-detail/vm-detail.component';
-import { VmCreateComponent } from './vm/vm-create/vm-create.component';
+import {VmDetailComponent} from './vm/vm-detail/vm-detail.component';
+import {VmCreateComponent} from './vm/vm-create/vm-create.component';
+import {NodeDetailComponent} from './node/node-detail/node-detail.component';
 
 
 @NgModule({
-  declarations: [
-    DashboardComponent,
-    UserComponent,
-    UserDetailComponent,
-    GroupComponent,
-    GroupDetailComponent,
-    TokenComponent,
-    SupportComponent,
-    ChatComponent,
-    NoticeComponent,
-    NoticeDetailComponent,
-    VmDirectComponent,
-    VmDirectDetailComponent,
-    VmComponent,
-    NodeComponent,
-    VmDetailComponent,
-    VmCreateComponent,
-  ],
+    declarations: [
+        DashboardComponent,
+        UserComponent,
+        UserDetailComponent,
+        GroupComponent,
+        GroupDetailComponent,
+        TokenComponent,
+        SupportComponent,
+        ChatComponent,
+        NoticeComponent,
+        NoticeDetailComponent,
+        VmDirectComponent,
+        VmDirectDetailComponent,
+        VmComponent,
+        NodeComponent,
+        VmDetailComponent,
+        VmCreateComponent,
+        NodeDetailComponent,
+    ],
     imports: [
         HttpClientModule,
         CommonModule,
@@ -80,19 +82,19 @@ import { VmCreateComponent } from './vm/vm-create/vm-create.component';
         MatSelectModule,
         MatMenuModule,
     ],
-  exports: [
-    MatCardModule,
-    MatSidenavModule,
-    MatButtonModule,
-    MatChipsModule,
-    MatIconModule,
-    MatProgressBarModule,
-    MatFormFieldModule,
-    ReactiveFormsModule,
-    MatToolbarModule,
-    MatInputModule,
-    FormsModule,
-  ]
+    exports: [
+        MatCardModule,
+        MatSidenavModule,
+        MatButtonModule,
+        MatChipsModule,
+        MatIconModule,
+        MatProgressBarModule,
+        MatFormFieldModule,
+        ReactiveFormsModule,
+        MatToolbarModule,
+        MatInputModule,
+        FormsModule,
+    ]
 })
 export class DashboardModule {
 }

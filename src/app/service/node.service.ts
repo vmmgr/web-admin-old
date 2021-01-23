@@ -41,6 +41,52 @@ export class NodeService {
         });
     }
 
+    getPCI(uid): Promise<any> {
+        return this.http.get(environment.api.url + environment.api.path + '/node/' + uid + '/pci', {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                ACCESS_TOKEN: sessionStorage.getItem('AccessToken'),
+            }),
+        }).toPromise().then(r => {
+            const response: any = r;
+            if (response.status === true) {
+                return response;
+            } else {
+                return {
+                    status: false,
+                    error: response.error.error,
+                    node: response
+                };
+            }
+        }).catch(error => {
+            console.log(error);
+            return {status: false, error};
+        });
+    }
+
+    getUSB(uid): Promise<any> {
+        return this.http.get(environment.api.url + environment.api.path + '/node/' + uid + '/usb', {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                ACCESS_TOKEN: sessionStorage.getItem('AccessToken'),
+            }),
+        }).toPromise().then(r => {
+            const response: any = r;
+            if (response.status === true) {
+                return response;
+            } else {
+                return {
+                    status: false,
+                    error: response.error.error,
+                    node: response
+                };
+            }
+        }).catch(error => {
+            console.log(error);
+            return {status: false, error};
+        });
+    }
+
     get(uid): Promise<any> {
         return this.http.get(environment.api.url + environment.api.path + '/node/' + uid, {
             headers: new HttpHeaders({
