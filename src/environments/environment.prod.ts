@@ -9,6 +9,6 @@ export const environment = {
         path: '/ws/v1'
     },
     novnc: {
-        url: 'http://vnc.local.doornoc.net/noVNC/vnc.html?host=127.0.0.1&port=8081&path=ws/v1/vnc'
+        url: 'http://vnc.local.doornoc.net/vnc.html?host=127.0.0.1&port=8081&path=ws/v1/vnc'
     }
 };
