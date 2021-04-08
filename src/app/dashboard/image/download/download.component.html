@@ -1,0 +1,35 @@
+<div class="main">
+    <form [formGroup]="connectionInput">
+        <mat-form-field appearance="fill">
+            <mat-label>StorageID</mat-label>
+            <mat-select formControlName="storage_id" required>
+                <ng-container *ngFor="let storage of this.storages">
+                    <mat-option [value]="storage.ID">[{{storage.node_id}}]{{storage.name}}:{{storage.path}}</mat-option>
+                </ng-container>
+            </mat-select>
+        </mat-form-field>
+        <br>
+        <mat-form-field [style.width.px]=800>
+            <mat-label>URL</mat-label>
+            <input matInput type="text" formControlName="url">
+        </mat-form-field>
+        <br>
+        <mat-form-field [style.width.px]=300>
+            <mat-label>Name</mat-label>
+            <input matInput type="text" formControlName="name">
+        </mat-form-field>
+        <br>
+    </form>
+    <br>
+    <button mat-stroked-button color="primary" (click)="downloadCDROM()">ISOイメージのダウンロード</button>
+    <button mat-stroked-button color="primary" (click)="downloadFloppy()">Floppyイメージのダウンロード</button>
+    <br>
+    <br>
+    <br>
+    <p>Name: {{this.storageService.downloadName}}</p>
+    <p>Comment: {{this.storageService.downloadMessage}}</p>
+    <br>
+    <mat-progress-bar mode="determinate" value="{{this.storageService.downloadProgress}}"></mat-progress-bar>
+    <br>
+    <br>
+</div>

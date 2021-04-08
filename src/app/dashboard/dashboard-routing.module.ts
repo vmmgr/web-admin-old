@@ -18,6 +18,8 @@ import {VmComponent} from './vm/vm.component';
 import {VmDetailComponent} from './vm/vm-detail/vm-detail.component';
 import {VmCreateComponent} from './vm/vm-create/vm-create.component';
 import {NodeDetailComponent} from './node/node-detail/node-detail.component';
+import {ImageComponent} from './image/image.component';
+import {DownloadComponent} from './image/download/download.component';
 
 
 const routes: Routes = [
@@ -26,7 +28,7 @@ const routes: Routes = [
         component: DashboardComponent,
         canActivate: [AuthGuard],
         children: [
-            {path: '', redirectTo: 'user', pathMatch: 'full'},
+            {path: '', redirectTo: 'vm', pathMatch: 'full'},
             {path: 'notice', component: NoticeComponent},
             {path: 'notice/:id', component: NoticeDetailComponent},
             {path: 'token', component: TokenComponent},
@@ -34,6 +36,8 @@ const routes: Routes = [
             {path: 'group/:id', component: GroupDetailComponent},
             {path: 'vm-direct', component: VmDirectComponent},
             {path: 'vm-direct/:id', component: VmDirectDetailComponent},
+            {path: 'image', component: ImageComponent},
+            {path: 'image/download', component: DownloadComponent},
             {path: 'support', component: SupportComponent},
             {path: 'support/:id', component: ChatComponent},
             {path: 'user', component: UserComponent},
