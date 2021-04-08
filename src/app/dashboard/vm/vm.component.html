@@ -47,15 +47,16 @@
                 <button mat-button (click)="detailPage(vm.nodeID,vm.uuid)">Detail Page</button>
                 <button mat-button (click)="noVNCPage(vm.nodeID,vm.uuid)">noVNC</button>
                 <br> <br>
-                <!--                <button mat-button color="primary" (click)="this.vmService.powerOn(1)">Start-->
-                <!--                </button>-->
-                <!--                <button mat-button color="warn" (click)="this.vmService.powerOff(host.value,vm.vm.UUID,{-->
-                <!--                  force: true})">Stop-->
-                <!--                </button>-->
-                <!--                <button mat-button color="warn" (click)="this.vmService.powerOff(host.value,vm.vm.UUID,{-->
-                <!--                  force: false})">Shutdown-->
-                <!--                </button>-->
-                <!--                <button mat-button (click)="this.vmService.power(host.value,vm.vm.UUID,2)">Suspend</button>-->
+                <button mat-button color="primary" (click)="this.vmService.powerOn(vm.nodeID,vm.uuid)">Start
+                </button>
+                <button mat-button color="warn" (click)="this.vmService.powerOff(vm.nodeID,vm.uuid,{
+                                  force: true})">Stop
+                </button>
+                <button mat-button color="warn" (click)="this.vmService.powerOff(vm.nodeID,vm.uuid,{
+                                  force: false})">Shutdown
+                </button>
+                <button mat-button (click)="this.vmService.suspend(vm.nodeID,vm.uuid)">Suspend</button>
+                <button mat-button (click)="this.vmService.resume(vm.nodeID,vm.uuid)">Resume</button>
             </mat-card-actions>
         </mat-card>
     </ng-container>
