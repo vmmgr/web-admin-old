@@ -47,7 +47,7 @@ export class VmCreateComponent implements OnInit, OnDestroy {
     }
 
     ngOnInit(): void {
-        this.vmService.openWebSocket();
+        this.vmService.openVMCreateWebSocket();
         this.templateService.get().then((response) => {
             if (response.error === null) {
                 this.templates = response.root.template;
@@ -55,8 +55,8 @@ export class VmCreateComponent implements OnInit, OnDestroy {
             }
         });
         this.nodeService.getAll().then((response) => {
-            if (response.status) {
-                this.nodes = response.node;
+            if (response.error === null) {
+                this.nodes = response.data.node;
                 console.log(this.nodes);
                 this.commonService.openBar('OK', 5000);
             } else {

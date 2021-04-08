@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CommonService} from '../../service/common.service';
 import {Router} from '@angular/router';
 import {VmService} from '../../service/vm.service';
@@ -9,7 +9,7 @@ import {environment} from '../../../environments/environment';
     templateUrl: './vm.component.html',
     styleUrls: ['./vm.component.scss']
 })
-export class VmComponent implements OnInit {
+export class VmComponent implements OnInit, OnDestroy {
     public vms: any[] = new Array();
 
     constructor(
@@ -21,6 +21,10 @@ export class VmComponent implements OnInit {
 
     ngOnInit(): void {
         this.vmService.openWebSocket();
+    }
+
+    ngOnDestroy() {
+        this.vmService.closeWebSocket();
     }
 
     detailPage(nodeID, vmUUID) {

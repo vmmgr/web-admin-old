@@ -117,19 +117,10 @@ export class NodeService {
                 ACCESS_TOKEN: sessionStorage.getItem('AccessToken'),
             }),
         }).toPromise().then(r => {
-            const response: any = r;
-            if (response.status === true) {
-                return response;
-            } else {
-                return {
-                    status: false,
-                    error: response.error.error,
-                    node: response
-                };
-            }
+            return {data: r, error: null};
         }).catch(error => {
             console.log(error);
-            return {status: false, error};
+            return {error: error.error};
         });
     }
 
