@@ -11,6 +11,10 @@
                         <th colspan="2">VM Information</th>
                     </tr>
                     <tr>
+                        <th>Type</th>
+                        <td>{{vm.Type}}</td>
+                    </tr>
+                    <tr>
                         <th>Name</th>
                         <td>{{vm.Name}}</td>
                     </tr>
@@ -18,10 +22,13 @@
                         <th>UUID</th>
                         <td>{{vm.UUID}}</td>
                     </tr>
-
+                    <tr>
+                        <th>VCPU</th>
+                        <td>{{vm.VCPU.Value}} Core</td>
+                    </tr>
                     <tr>
                         <th>Memory</th>
-                        <td>{{vm.Memory.Value}}</td>
+                        <td>{{vm.Memory.Value/1000}} MB ({{vm.Memory.Value}} KB)</td>
                     </tr>
                     <tr>
                         <th>VNCPort</th>

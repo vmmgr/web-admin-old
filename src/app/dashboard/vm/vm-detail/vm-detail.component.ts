@@ -3,7 +3,6 @@ import {FormControl, FormGroup} from '@angular/forms';
 import {ActivatedRoute} from '@angular/router';
 import {CommonService} from '../../../service/common.service';
 import {VmService} from '../../../service/vm.service';
-import {log} from 'util';
 
 @Component({
     selector: 'app-vm-detail',
@@ -43,7 +42,7 @@ export class VmDetailComponent implements OnInit {
                 this.status = response.vm.stat;
                 this.json = JSON.stringify(response.vm.vm, null, '\t');
                 console.log(this.status);
-                if (this.vm.Devices.Graphics !== null) {
+                if (this.vm.Devices.Graphics !== null && this.vm.Devices.Graphics[0].VNC !== null) {
                     console.log(this.vm.Devices.Graphics[0].VNC.Port);
                     console.log(this.vm.Devices.Graphics[0].VNC.WebSocket);
                     this.vncPort = this.vm.Devices.Graphics[0].VNC.Port;
