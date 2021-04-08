@@ -36,7 +36,7 @@ export class VmService {
     }
 
     public openWebSocket() {
-        this.websocket = new WebSocket(environment.websocket.url + environment.websocket.path + '/vm');
+        this.websocket = new WebSocket(environment.websocket.url + environment.websocket.path + '/vm/list');
         this.websocket.onopen = (event) => {
             console.log(event);
         };
@@ -51,6 +51,7 @@ export class VmService {
                     uuid: json.uuid,
                     vcpu: json.vcpu,
                     memory: json.memory,
+                    status: json.status,
                     message: json.message
                 });
             } else {
