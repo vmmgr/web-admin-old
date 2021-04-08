@@ -17,8 +17,10 @@ export class VmService {
     }
 
     websocket: WebSocket;
+    websocketVMCreate: WebSocket;
     progress = 0;
-    dataMessage: any;
+    dataMessage: any[] = [];
+    dataMessageVMCreate: any;
 
     private static resProcess(res: any): any {
         const response: any = res;
@@ -40,13 +42,20 @@ export class VmService {
         };
 
         this.websocket.onmessage = (event) => {
-            // console.log(event);
-            const tmp = event.data;
-            console.log(tmp);
-            this.progress = event.data.progress;
+            console.log(event.data);
             const json = JSON.parse(event.data);
-            this.dataMessage = json;
-            this.progress = json.progress;
+            if (json.error === '') {
+                this.dataMessage.push({
+                    nodeID: json.node_id,
+                    name: json.name,
+                    uuid: json.uuid,
+                    vcpu: json.vcpu,
+                    memory: json.memory,
+                    message: json.message
+                });
+            } else {
+                this.commonService.openBar('[NodeID: ' + json.node_id + '] ' + json.error, 10000);
+            }
         };
         this.websocket.onclose = (event) => {
             console.log(event);
@@ -60,6 +69,35 @@ export class VmService {
 
     public closeWebSocket() {
         this.websocket.close();
+    }
+
+    public openVMCreateWebSocket() {
+        this.websocketVMCreate = new WebSocket(environment.websocket.url + environment.websocket.path + '/vm/create');
+        this.websocketVMCreate.onopen = (event) => {
+            console.log(event);
+        };
+
+        this.websocketVMCreate.onmessage = (event) => {
+            // console.log(event);
+            const tmp = event.data;
+            console.log(tmp);
+            this.progress = event.data.progress;
+            const json = JSON.parse(event.data);
+            this.dataMessageVMCreate = json;
+            this.progress = json.progress;
+        };
+        this.websocketVMCreate.onclose = (event) => {
+            console.log(event);
+        };
+    }
+
+    public sendVMCreateMessage(message: string) {
+        console.log(message);
+        this.websocketVMCreate.send(message);
+    }
+
+    public closeVMCreateWebSocket() {
+        this.websocketVMCreate.close();
     }
 
     create(body): Promise<any> {

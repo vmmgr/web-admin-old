@@ -20,13 +20,7 @@ export class VmComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.vmService.getAll().then((response) => {
-            if (response.status === 200) {
-                this.vms = response.vm;
-            }
-            console.log(response);
-            console.log(this.vms);
-        });
+        this.vmService.openWebSocket();
     }
 
     detailPage(nodeID, vmUUID) {

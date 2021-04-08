@@ -1,46 +1,46 @@
 <div class="main">
     <button mat-button routerLink="/dashboard/vm/create">VM Create</button>
     <br>
-    <ng-container *ngFor="let vm of vms">
+    <ng-container *ngFor="let vm of this.vmService.dataMessage">
         <br>
         <mat-card>
             <mat-card-header>
-                <mat-card-title>{{vm.vm.Name}} ({{vm.vm.Type}})</mat-card-title>
-                <mat-card-subtitle><b>nodeID:{{vm.node}} </b> UUID:{{vm.vm.UUID}} </mat-card-subtitle>
+                <mat-card-title>[{{vm.nodeID}}] {{vm.name}}</mat-card-title>
+                <mat-card-subtitle>UUID:{{vm.uuid}} </mat-card-subtitle>
                 <!--                <mat-card-subtitle><b>VNCPort:{{vm.Devices.Graphics[0].VNC.Port}}-->
                 <!--                    WSPort:{{vm.Devices.Graphics[0].VNC.WebSocket}} </b></mat-card-subtitle>-->
             </mat-card-header>
             <mat-card-content>
+                <!--                <mat-card-subtitle>-->
+                <!--                    <mat-chip-list>-->
+                <!--                        <ng-container *ngIf="vm.stat === 0">-->
+                <!--                            <mat-chip color="accent" selected>NOSTATE</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 1">-->
+                <!--                            <mat-chip color="primary" selected>起動中</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 2">-->
+                <!--                            <mat-chip color="accent" selected>BLOCKED</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 3">-->
+                <!--                            <mat-chip color="accent" selected>一時停止中</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 4">-->
+                <!--                            <mat-chip color="warn" selected>シャットダウン中</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 5">-->
+                <!--                            <mat-chip color="warn" selected>Crash</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 6">-->
+                <!--                            <mat-chip color="warn" selected>pmSuspended</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                        <ng-container *ngIf="vm.stat === 7">-->
+                <!--                            <mat-chip color="warn" selected>停止中</mat-chip>-->
+                <!--                        </ng-container>-->
+                <!--                    </mat-chip-list>-->
+                <!--                </mat-card-subtitle>-->
                 <mat-card-subtitle>
-                    <mat-chip-list>
-                        <ng-container *ngIf="vm.stat === 0">
-                            <mat-chip color="accent" selected>NOSTATE</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 1">
-                            <mat-chip color="primary" selected>起動中</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 2">
-                            <mat-chip color="accent" selected>BLOCKED</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 3">
-                            <mat-chip color="accent" selected>一時停止中</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 4">
-                            <mat-chip color="warn" selected>シャットダウン中</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 5">
-                            <mat-chip color="warn" selected>Crash</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 6">
-                            <mat-chip color="warn" selected>pmSuspended</mat-chip>
-                        </ng-container>
-                        <ng-container *ngIf="vm.stat === 7">
-                            <mat-chip color="warn" selected>停止中</mat-chip>
-                        </ng-container>
-                    </mat-chip-list>
-                </mat-card-subtitle>
-                <mat-card-subtitle>
-                    <p>CPU: {{vm.vm.VCPU.Value}} Memory: {{vm.vm.Memory.Value / 1000}} MB</p>
+                    <p>CPU: {{vm.vcpu}} Memory: {{vm.memory / 1000}} MB</p>
                 </mat-card-subtitle>
             </mat-card-content>
             <mat-card-actions>
