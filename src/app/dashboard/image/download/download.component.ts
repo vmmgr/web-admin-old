@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {StorageService} from '../../../service/storage.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {ImageService} from '../../../service/image.service';
@@ -8,7 +8,7 @@ import {ImageService} from '../../../service/image.service';
     templateUrl: './download.component.html',
     styleUrls: ['./download.component.scss']
 })
-export class DownloadComponent implements OnInit {
+export class DownloadComponent implements OnInit, OnDestroy {
 
     constructor(
         public storageService: StorageService,
@@ -30,6 +30,10 @@ export class DownloadComponent implements OnInit {
             console.log(res);
             this.storages = res.storage;
         });
+    }
+
+    ngOnDestroy(): void {
+        this.storageService.closeStorageWebSocket();
     }
 
     downloadCDROM(): void {

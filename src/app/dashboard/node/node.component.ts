@@ -22,10 +22,8 @@ export class NodeComponent implements OnInit {
 
     ngOnInit(): void {
         this.nodeService.getAll().then(response => {
-            console.log(response);
-            if (response.status) {
-                this.node = response.node;
-                this.loading = false;
+            if (response.error === null) {
+                this.node = response.data.node;
                 console.log(this.node);
                 this.commonService.openBar('OK', 5000);
             } else {

@@ -94,24 +94,29 @@ export class NodeService {
                 ACCESS_TOKEN: sessionStorage.getItem('AccessToken'),
             }),
         }).toPromise().then(r => {
-            const response: any = r;
-            if (response.status === true) {
-                return response;
-            } else {
-                return {
-                    status: false,
-                    error: response.error.error,
-                    node: response
-                };
-            }
+            return {data: r, error: null};
         }).catch(error => {
             console.log(error);
-            return {status: false, error};
+            return {error: error.error};
         });
     }
 
     getAll(): Promise<any> {
         return this.http.get(environment.api.url + environment.api.path + '/node', {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+                ACCESS_TOKEN: sessionStorage.getItem('AccessToken'),
+            }),
+        }).toPromise().then(r => {
+            return {data: r, error: null};
+        }).catch(error => {
+            console.log(error);
+            return {error: error.error};
+        });
+    }
+
+    getAllDevice(nodeID): Promise<any> {
+        return this.http.get(environment.api.url + environment.api.path + '/node/' + nodeID + '/device', {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
                 ACCESS_TOKEN: sessionStorage.getItem('AccessToken'),

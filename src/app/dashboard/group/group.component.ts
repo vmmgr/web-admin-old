@@ -1,6 +1,5 @@
 import {Component, OnInit} from '@angular/core';
 import {GroupService} from '../../service/group.service';
-import {UserService} from '../../service/user.service';
 import {CommonService} from '../../service/common.service';
 import {Router} from '@angular/router';
 
@@ -24,8 +23,8 @@ export class GroupComponent implements OnInit {
   ngOnInit(): void {
     this.groupService.getAll().then(response => {
       console.log(response);
-      if (response.status) {
-        this.group = response.group;
+      if (response.error === null) {
+        this.group = response.data.group;
         this.loading = false;
         console.log(this.group);
         this.commonService.openBar('OK', 5000);

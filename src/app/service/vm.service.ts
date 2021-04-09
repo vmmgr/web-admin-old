@@ -153,8 +153,8 @@ export class VmService {
         });
     }
 
-    powerOn(id, json: any): Promise<any> {
-        return this.http.put(environment.api.url + environment.api.path + '/vm/' + id + '/power', json, {
+    powerOn(nodeID: string, vmUUID: string): Promise<any> {
+        return this.http.put(environment.api.url + environment.api.path + '/vm/' + nodeID + '/' + vmUUID + '/power', null, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             }),
@@ -162,12 +162,14 @@ export class VmService {
             return VmService.resProcess(r);
         }).catch(error => {
             console.log(error);
+            this.commonService.openBar(error.error, 10000);
             return {status: false, error};
         });
     }
 
-    powerOff(id, json: any): Promise<any> {
-        return this.http.request('delete', environment.api.url + environment.api.path + '/vm/' + id + '/power', {
+    powerOff(nodeID: string, vmUUID: string, json: any): Promise<any> {
+        return this.http.request('delete', environment.api.url + environment.api.path + '/vm/' +
+            nodeID + '/' + vmUUID + '/power', {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
             }),
@@ -176,15 +178,30 @@ export class VmService {
             return VmService.resProcess(r);
         }).catch(error => {
             console.log(error);
+            this.commonService.openBar(error.error, 10000);
             return {status: false, error};
         });
     }
 
-    power(id, json: any): Promise<any> {
-        return this.http.put(environment.api.url + environment.api.path + '/vm/' + id + '/power', {
+    suspend(nodeID: string, vmUUID: string): Promise<any> {
+        return this.http.put(environment.api.url + environment.api.path + '/vm/' + nodeID + '/' + vmUUID + '/suspend', null, {
             headers: new HttpHeaders({
                 'Content-Type': 'application/json',
-            }), json
+            }),
+        }).toPromise().then(r => {
+            return VmService.resProcess(r);
+        }).catch(error => {
+            console.log(error);
+            this.commonService.openBar(error.error, 10000);
+            return {status: false, error};
+        });
+    }
+
+    resume(nodeID: string, vmUUID: string): Promise<any> {
+        return this.http.put(environment.api.url + environment.api.path + '/vm/' + nodeID + '/' + vmUUID + '/resume', null, {
+            headers: new HttpHeaders({
+                'Content-Type': 'application/json',
+            }),
         }).toPromise().then(r => {
             return VmService.resProcess(r);
         }).catch(error => {

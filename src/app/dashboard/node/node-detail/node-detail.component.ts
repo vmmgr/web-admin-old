@@ -26,29 +26,21 @@ export class NodeDetailComponent implements OnInit {
     ngOnInit(): void {
         this.id = this.route.snapshot.paramMap.get('id');
         this.nodeService.get(this.id).then((response) => {
-            if (response.status) {
-                console.log(response.node[0]);
+            if (response.error === null) {
+                console.log(response.data);
                 this.loading = false;
-                this.node = response.node[0];
+                this.node = response.data.node[0];
             }
             console.log(response);
         });
-        this.nodeService.getPCI(this.id).then((response) => {
-            if (response.status) {
-                console.log(response.pci);
+
+        this.nodeService.getAllDevice(this.id).then((response) => {
+            if (response.error === null) {
+                console.log(response.data);
                 this.loading = false;
-                this.nodePCI = response.pci;
+                this.nodeUSB = response.data.usb;
+                this.nodePCI = response.data.pci;
             }
-            console.log(response);
-        });
-        this.nodeService.getUSB(this.id).then((response) => {
-            if (response.status) {
-                console.log(response.usb);
-                this.loading = false;
-                this.nodeUSB = response.usb;
-            }
-            console.log(response);
         });
     }
-
 }

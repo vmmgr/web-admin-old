@@ -30,14 +30,10 @@ export class AuthService {
     }).toPromise().then(r => {
       const response: any = r;
       console.log(response);
-      if (response.status) {
-        sessionStorage.setItem('AccessToken', response.token[0].access_token);
-        this.router.navigate(['/dashboard']).then();
-      } else {
-        this.commonService.openBar(response.error, 4000);
-      }
+      sessionStorage.setItem('AccessToken', response.token[0].access_token);
+      this.router.navigate(['/dashboard']).then();
     }).catch(error => {
-      console.log('error: ' + JSON.stringify(error.error.error));
+      console.log(error);
       this.commonService.openBar(JSON.stringify(error.error.error), 5000);
     });
   }
