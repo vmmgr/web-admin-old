@@ -69,6 +69,7 @@ export class VmService {
     }
 
     public closeWebSocket() {
+        this.dataMessage = [];
         this.websocket.close();
     }
 
