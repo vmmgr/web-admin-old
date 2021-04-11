@@ -1,13 +1,39 @@
 <div class="main">
+    <h2>Download Type</h2>
+    <p>チェックボックスを付けない場合は、ISO,Floppyイメージのダウンロードになります。</p>
+    <section>
+        <mat-checkbox [(ngModel)]="imageVM">VM Image(ダウンロード)</mat-checkbox>
+    </section>
+    <br>
     <form [formGroup]="connectionInput">
-        <mat-form-field appearance="fill">
-            <mat-label>StorageID</mat-label>
-            <mat-select formControlName="storage_id" required>
-                <ng-container *ngFor="let storage of this.storages">
-                    <mat-option [value]="storage.ID">[{{storage.node_id}}]{{storage.name}}:{{storage.path}}</mat-option>
-                </ng-container>
-            </mat-select>
-        </mat-form-field>
+        <ng-container *ngIf="imageVM">
+            <mat-form-field appearance="fill">
+                <mat-label>StorageID</mat-label>
+                <mat-select formControlName="storage_id" required>
+                    <ng-container *ngFor="let storage of this.storages">
+                        <ng-container *ngIf="storage.vm_image">
+                            <mat-option [value]="storage.ID">
+                                [{{storage.node_id}}]{{storage.name}}:{{storage.path}}
+                            </mat-option>
+                        </ng-container>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+        </ng-container>
+        <ng-container *ngIf="!imageVM">
+            <mat-form-field appearance="fill">
+                <mat-label>StorageID</mat-label>
+                <mat-select formControlName="storage_id" required>
+                    <ng-container *ngFor="let storage of this.storages">
+                        <ng-container *ngIf="!storage.vm_image">
+                            <mat-option [value]="storage.ID">
+                                [{{storage.node_id}}]{{storage.name}}:{{storage.path}}
+                            </mat-option>
+                        </ng-container>
+                    </ng-container>
+                </mat-select>
+            </mat-form-field>
+        </ng-container>
         <br>
         <mat-form-field [style.width.px]=800>
             <mat-label>URL</mat-label>
@@ -21,8 +47,18 @@
         <br>
     </form>
     <br>
-    <button mat-stroked-button color="primary" (click)="downloadCDROM()">ISOイメージのダウンロード</button>
-    <button mat-stroked-button color="primary" (click)="downloadFloppy()">Floppyイメージのダウンロード</button>
+    <h2>Option</h2>
+    <section>
+        <mat-checkbox [(ngModel)]="cloudInit">CloudInit対応</mat-checkbox>
+    </section>
+    <br>
+    <ng-container *ngIf="!imageVM">
+        <button mat-stroked-button color="primary" (click)="downloadCDROM()">ISOイメージのダウンロード</button>
+        <button mat-stroked-button color="primary" (click)="downloadFloppy()">Floppyイメージのダウンロード</button>
+    </ng-container>
+    <ng-container *ngIf="imageVM">
+        <button mat-stroked-button color="primary" (click)="downloadVM()">VMイメージのダウンロード</button>
+    </ng-container>
     <br>
     <br>
     <br>

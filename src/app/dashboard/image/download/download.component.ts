@@ -10,25 +10,27 @@ import {ImageService} from '../../../service/image.service';
 })
 export class DownloadComponent implements OnInit, OnDestroy {
 
-    constructor(
-        public storageService: StorageService,
-        public imageService: ImageService,
-    ) {
-    }
-
+    public imageVM = true;
     public storages: any[] = [];
     public connectionInput = new FormGroup({
         storage_id: new FormControl(''),
         url: new FormControl(),
         name: new FormControl(),
     });
+    public cloudInit = false;
 
+    constructor(
+        public storageService: StorageService,
+        public imageService: ImageService,
+    ) {
+    }
 
     ngOnInit(): void {
         this.storageService.openStorageProgressWebSocket();
         this.storageService.get().then(res => {
             console.log(res);
             this.storages = res.storage;
+            console.log(this.connectionInput.value);
         });
     }
 
@@ -45,6 +47,14 @@ export class DownloadComponent implements OnInit, OnDestroy {
     }
 
     downloadFloppy(): void {
+    }
 
+    downloadVM(): void {
+        const body = {
+            url: this.connectionInput.value.url,
+            name: this.connectionInput.value.name,
+            cloud_init: this.cloudInit
+        };
+        this.imageService.createVM(this.connectionInput.value.storage_id, body).then(r => console.log(r));
     }
 }

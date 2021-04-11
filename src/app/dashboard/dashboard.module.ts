@@ -37,8 +37,9 @@ import {MatMenuModule} from '@angular/material/menu';
 import {VmDetailComponent} from './vm/vm-detail/vm-detail.component';
 import {VmCreateComponent} from './vm/vm-create/vm-create.component';
 import {NodeDetailComponent} from './node/node-detail/node-detail.component';
-import {ImageComponent} from './image/image.component';
 import {DownloadComponent} from './image/download/download.component';
+import {VmImageComponent} from './image/vm-image/vm-image.component';
+import {NoVMImageComponent} from './image/no-vmimage/no-vmimage.component';
 
 
 @NgModule({
@@ -60,8 +61,9 @@ import {DownloadComponent} from './image/download/download.component';
         VmDetailComponent,
         VmCreateComponent,
         NodeDetailComponent,
-        ImageComponent,
         DownloadComponent,
+        VmImageComponent,
+        NoVMImageComponent,
     ],
     imports: [
         HttpClientModule,

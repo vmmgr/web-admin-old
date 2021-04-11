@@ -1,0 +1,19 @@
+<div class="main">
+    <ng-container *ngFor="let image of this.imageService.dataNoVMListMessage">
+        <br>
+        <mat-card>
+            <mat-card-header>
+                <mat-card-title>[{{image.nodeID}}] {{image.name}}</mat-card-title>
+                <mat-card-subtitle>Size: {{image.size / 1000000}} MB Time:{{image.time}} </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-card-subtitle>
+                    <p>Path: {{image.filePath}}</p>
+                </mat-card-subtitle>
+            </mat-card-content>
+            <mat-card-actions>
+            </mat-card-actions>
+        </mat-card>
+    </ng-container>
+    <br>
+</div>
